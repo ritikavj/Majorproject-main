@@ -1,0 +1,247 @@
+<!-- Styles -->
+<style>
+  .navbar {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .nav-link {
+  margin-right: 10px;
+  transition: 0.3s;
+  white-space: nowrap;         /* Prevent line break */
+  display: inline-flex;        /* Align icon and text inline */
+  align-items: center;         /* Vertically center icon and text */
+  gap: 0.3rem;                 /* Space between icon and text */
+}
+
+
+  .nav-link:hover {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+  }
+
+  /* Hamburger toggler */
+  .checkboxtoggler {
+    width: 2.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .checkboxtoggler div {
+    background: #df6447;
+    height: 0.3em;
+    border-radius: 10em;
+    transition: 0.4s ease;
+  }
+
+  #toggleChecker {
+    display: none;
+  }
+
+  #toggleChecker:checked + label .line-1 {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  #toggleChecker:checked + label .line-2 {
+    transform: rotate(-45deg);
+  }
+
+  #toggleChecker:checked + label .line-3 {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .nav-profile {
+    position: absolute;
+    top: 3.5rem;
+    right: 1.2rem;
+    min-height: 8rem;
+    min-width: 10rem;
+    padding: 1.5rem;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.201);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+  }
+
+  .nav-profile a:hover {
+    color: #fe424d;
+  }
+
+  .airbnb-btn {
+    color: #fe424d !important;
+    font-weight: 500;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    transition: 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .airbnb-btn:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+    text-decoration: none;
+  }
+
+  .search-group {
+    width: 100%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    border-radius: 25px;
+  }
+
+  .search-inp {
+    border-radius: 25px 0 0 25px;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  .search-btn {
+    background-color: #fe424d;
+    color: white;
+    border-radius: 0 25px 25px 0;
+    padding: 0 1rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-btn:hover {
+    background-color: #e03150;
+    transform: scale(1.05);
+  }
+
+  .search-bar-wrapper {
+    max-width: 300px;
+    width: 100%;
+    margin: 0 auto;
+    flex-shrink: 0;
+  }
+  .navbar {
+  position: relative; /* Required for absolute positioning below */
+}
+
+.search-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 320px;
+  width: 100%;
+  z-index: 1;
+}
+
+</style>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-md sticky-top">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+<!-- Left -->
+<div class="d-flex align-items-center">
+  <!-- Brand Logo -->
+  <a class="navbar-brand me-3" href="/listings">
+    <i class="fa-regular fa-compass"></i>
+  </a>
+
+  <!-- Nav Links (visible only on medium and up) -->
+  <div class="d-none d-md-flex align-items-center">
+    <a class="nav-link" href="/listings"><i>Explore</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a class="nav-link" href="/listings/new">
+  <i class="bi bi-house-add text-danger"></i><span>Airbnb your stay</span>
+</a>
+
+  </div>
+</div>
+
+
+   <!-- Center -->
+<div class="search-container d-none d-md-block">
+  <form class="d-flex search-group" role="search" action="/listings/search" method="GET">
+    <input class="form-control search-inp" 
+           type="search" 
+           name="q" 
+           placeholder="Search Destinations" 
+           required>
+    <button class="search-btn" type="submit" title="Search">
+      <i class="bi bi-search" style="font-size: 1.1rem;"></i>
+    </button>
+  </form>
+</div>
+
+
+    <!-- Hamburger -->
+    <input id="toggleChecker" type="checkbox" />
+    <label id="togglerLable" for="toggleChecker">
+      <div class="checkboxtoggler">
+        <div class="line-1"></div>
+        <div class="line-2"></div>
+        <div class="line-3"></div>
+      </div>
+    </label>
+
+    <!-- Hamburger Menu -->
+    <div class="nav-profile">
+      <% if (!currUser) { %>
+        <a class="nav-link" href="/signup"><b>Sign up</b></a>
+        <a class="nav-link" href="/login"><b>Log in</b></a>
+        <a class="nav-link" href="/reset-password"><b>Reset Password</b></a>
+      <% } else { %>
+        <a class="nav-link" href="/reset-password"><b>Reset Password</b></a>
+        <a class="nav-link" href="/logout"><b>Log out</b></a>
+      <% } %>
+    </div>
+
+  </div>
+</nav>
+
+<!-- JS Script -->
+<script>
+  const hamMenu = document.getElementById("toggleChecker");
+  const profileMenu = document.querySelector(".nav-profile");
+
+  hamMenu.addEventListener("change", () => {
+    if (hamMenu.checked) {
+      profileMenu.style.visibility = "visible";
+      profileMenu.style.opacity = "1";
+    } else {
+      profileMenu.style.opacity = "0";
+      profileMenu.style.visibility = "hidden";
+    }
+  });
+</script>
+
+
+
+
+
