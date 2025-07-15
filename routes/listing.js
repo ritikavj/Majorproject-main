@@ -38,7 +38,7 @@ router.get("/search", async (req, res) => {
         title: { $regex: q, $options: "i" }
     });
 
-    res.render("listings/index", { allListings: listings });
+    res.render("listings/index", { allListings: listings, q });
 });
 
 
